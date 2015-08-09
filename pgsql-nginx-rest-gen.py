@@ -53,7 +53,11 @@ import sys
 import sqlparse
 
 def generate_nginx_conf(create_statement):
-	print str(create_statement.get_token_at_offset(3))
+	print str(create_statement)
+	#print dir(create_statement)
+	for t in create_statement.tokens:
+		if not t.is_whitespace():
+			print str(t), '=', str(t.ttype)
 
 def main(av):
 	sql_statements = ''.join(sys.stdin.readlines())
@@ -61,7 +65,7 @@ def main(av):
 	fsql_statements = sqlparse.format(sql_statements, keyword_case='upper')
 	p = sqlparse.parse(fsql_statements)
 	for t in p:
-		if str(t.token_first()) == 'CREATE':
+		if str(t.get_type()) == 'CREATE':
 			generate_nginx_conf(t)
 
 if __name__ == '__main__':
