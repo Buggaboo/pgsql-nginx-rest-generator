@@ -1,0 +1,24 @@
+CREATE TABLE Persons
+(
+	PersonID int,
+	LastName varchar(255),
+	FirstName varchar(255),
+	Address varchar(255),
+	City varchar(255)
+);
+
+CREATE TABLE products
+(
+	product_id number(10) not null,
+	product_name varchar2(50) not null,
+	category varchar2(50),
+	CONSTRAINT products_pk PRIMARY KEY (product_id)
+);
+
+CREATE TABLE suppliers
+(
+	supplier_id number(10) not null,
+	supplier_name varchar2(50) not null,
+	city varchar2(25),
+	CONSTRAINT suppliers_pk PRIMARY KEY (supplier_id)
+);
