@@ -71,6 +71,8 @@ http {{
       postgres_pass database;
       rds_json on;
       postgres_query    HEAD GET  "SELECT * FROM {table_name}";
+      # select array_to_json(array_agg(row_to_json(t))) from (select {select_args} from {table_name}) t
+      # NOTE: For pgsql >=9.2, array_to_json is probably faster than 'rds_json on', turn it off when experimenting
       
       {escape_select_args}
 
@@ -83,9 +85,11 @@ http {{
     location ~ /{table_name}/(?<id>\d+) {{
       postgres_pass database;
       rds_json  on;
-      # TODO determine if id is the actual default id name # do the primary key check info I dumped...
+      # TODO determine if id is the actual default id name; implement the PRIMARY KEY check info I lost along the way...
       postgres_escape $escaped_id $id;
       postgres_query    HEAD GET  "SELECT * FROM {table_name} WHERE id=$escaped_id";
+      # select row_to_json(t) from (select {select_args} from {table_name}) t
+      # NOTE: For pgsql >=9.2, array_to_json is probably faster than 'rds_json on', turn it off when experimenting
       postgres_rewrite  HEAD GET  no_rows 410;
 
       {escape_select_args}
@@ -123,7 +127,7 @@ def generate_nginx_conf(create_statement):
 	table_name = table_name.replace('(', '')
 	# skip '('
 	parsed_columns = [ column_def.strip().split(' ')[0] for column_def in group_token[1:] if not column_def == ')' and not column_def == '(' ]
-	column_names = [ c for c in parsed_columns if not c == 'CONSTRAINT' ] # TODO
+	column_names = [ c for c in parsed_columns if not c == 'CONSTRAINT' ] # TODO blacklist which keywords may not enter
 	format_template(table_name, column_names)
 			
 
