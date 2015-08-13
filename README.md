@@ -19,7 +19,7 @@ If you're on a mac, download the src from the [openresty site](https://openresty
 
 Build it with these parameters:
 ```bash
-# ./configure --help | grep without | grep lua | sed 's/disable.*//' | xargs ./configure --with-http_postgres_module && make -j6 && make install
+> ./configure --help | grep without | grep lua | sed 's/disable.*//' | xargs ./configure --with-http_postgres_module && make -j6 && make install
 ```
 Mac compilation bug: for some reason, without disabling lua completely, the openresty build (1.7.10.2) will break on x86_64 arch. (8-8-2015)
 
