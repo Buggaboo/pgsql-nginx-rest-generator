@@ -19,7 +19,7 @@ If you're on a mac, download the src from the [openresty site](https://openresty
 
 Build it with these parameters:
 ```bash
-> ./configure --help | grep without | grep lua | sed 's/disable.*//' | xargs ./configure --with-http_postgres_module && make -j6 && make install
+./configure --help | grep without | grep lua | sed 's/disable.*//' | xargs ./configure --with-http_postgres_module && make -j6 && make install
 ```
 Mac compilation bug: for some reason, without disabling lua completely, the openresty build (1.7.10.2) will break on x86_64 arch. (8-8-2015)
 
@@ -30,9 +30,13 @@ postgresql on mac
 * Install homebrew
 * Hit the following commands:
 ```bash
-> brew install postgresql
-> echo "alias pgstart="pg_ctl -D ~/postgresql/ -l logfile start"" >>  ~/.bash_aliases
-> mkdir -p ~/postgresql
-> initdb ~/postgresql
+brew install postgresql
+echo "alias pgstart="pg_ctl -D ~/postgresql/ -l logfile start"" >>  ~/.bash_aliases
+mkdir -p ~/postgresql
+initdb ~/postgresql
 ```
 * Try running it with the alias `pgstart`
+
+postgresql elsewhere
+--------------------
+* [Moar Links](https://wiki.postgresql.org/wiki/Detailed_installation_guides)
