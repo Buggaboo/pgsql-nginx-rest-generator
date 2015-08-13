@@ -5,13 +5,14 @@ This project relies on the sql parser heavily to generate the configuration file
 
 This project was inspired by [this](http://rny.io/nginx/postgresql/2013/07/26/simple-api-with-nginx-and-postgresql.html) and [this](https://ef.gy/using-postgresql-with-nginx) and [ASP.NET Queryable](http://www.asp.net/web-api/overview/odata-support-in-aspnet-web-api/supporting-odata-query-options).
 
-Dependencies:
+==Dependencies==
 
 * nginx
 * postgresql
 * openresty
 * sqlparse>=0.2.0 (python)
 
+==Mac==
 If you're on a mac, download the src from the [openresty site](https://openresty.org/).
 
 Build it with these parameters:
