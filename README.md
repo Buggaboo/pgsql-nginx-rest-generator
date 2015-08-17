@@ -39,4 +39,5 @@ initdb ~/postgresql
 
 postgresql elsewhere
 --------------------
+* [Create your user](http://www.sakana.fr/blog/2007/06/06/postgresql-create-a-user-a-database-and-grant-accesses/)
 * [Moar Links](https://wiki.postgresql.org/wiki/Detailed_installation_guides)
